@@ -86,7 +86,7 @@
                             ]
                         },
                         "schema": {
-                            "$ref": "#/definitions/carreras"
+                            "$ref": "#/definitions/Carrera"
                         }
                     },
                     "403": {
@@ -149,12 +149,13 @@
                                 {
                                     "idCarrera": 2,
                                     "codigo": "002",
-                                    "nombreCarrera": "Carrera de computación"
+                                    "nombreCarrera": "Carrera de computación",
+                                    "idInstituto": "001"
                                 }
                             ]
                         },
                         "schema": {
-                            "$ref": "#/definitions/carrera"
+                            "$ref": "#/definitions/Carrera"
                         }
                     },
                     "403": {
@@ -457,7 +458,7 @@
         "Carreras": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/Carreras"
+                "$ref": "#/definitions/Carrera"
             }
         },
         "NuevoInstituto": {
@@ -474,6 +475,27 @@
                 "nombre": {
                     "type": "string",
                     "default": "Instituto patito"
+                }
+            }
+        },
+        "NuevaCarrera": {
+            "type": "object",
+            "required": [
+                "codigo",
+                "nombre"
+            ],
+            "properties": {
+                "codigoCarrera": {
+                    "type": "string",
+                    "default": "111"
+                },
+                "nombre": {
+                    "type": "string",
+                    "default": "Carrera patito"
+                },
+                "idInstituto": {
+                    "type": "string",
+                    "default": "002"
                 }
             }
         }
