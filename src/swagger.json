@@ -71,27 +71,22 @@
                 "tags": [
                     "Carreras"
                 ],
-                "summary": "Listado de todos los institutos que existen en la UTM.",
-                "description": "<p>Servicio que devuelve la información detallada de todos los institutos que existen en la UTM.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los institutos existentes en la UTM?</strong></em></p>",
+                "summary": "Listado de todas las carreras que existen en la UTM.",
+                "description": "<p>Servicio que devuelve la información detallada de todas las carreras que existen en la UTM.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son las carreras existentes en la UTM?</strong></em></p>",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "examples": {
                             "application/json": [
                                 {
-                                    "idInstituto": 1,
+                                    "idCarrera": 1,
                                     "codigo": "001",
-                                    "nombre": "Instituto de electrónica y mecatrónica"
-                                },
-                                {
-                                    "idInstituto": 2,
-                                    "codigo": "002",
-                                    "nombre": "Instituto de computación"
+                                    "nombre": "Ingeniería en computación"
                                 }
                             ]
                         },
                         "schema": {
-                            "$ref": "#/definitions/Institutos"
+                            "$ref": "#/definitions/carreras"
                         }
                     },
                     "403": {
@@ -139,6 +134,45 @@
                 ]
             }
         },
+        "/api/carreras/{idCarrera}": {
+            "get": {
+                "tags": [
+                    "Carreras"
+                ],
+                "summary": "Listado de una carrera en particular.",
+                "description": "<p>Servicio ...</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idCarrera": 2,
+                                    "codigo": "002",
+                                    "nombreCarrera": "Carrera de computación"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/carrera"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "idCarrera",
+                        "in": "path",
+                        "required": true,
+                        "description": "idCarrera de la carrera de la cuál se requiere la información",
+                        "type": "number",
+                        "default": "8"
+                    }
+                ]
+            }
+        },
         "/api/institutos/eliminar/{idInstituto}": {
             "delete": {
                 "summary": "Eliminar un instituto",
@@ -154,6 +188,32 @@
                 ],
                 "tags": [
                     "Institutos"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/carreras/eliminar/{idCarrera}": {
+            "delete": {
+                "summary": "Eliminar una carrera",
+                "operationId": "eliminar",
+                "parameters": [
+                    {
+                        "name": "idCarrera",
+                        "in": "path",
+                        "description": "id de la carrera a eliminar",
+                        "required": true,
+                        "default": 14
+                    }
+                ],
+                "tags": [
+                    "Carreras"
                 ],
                 "responses": {
                     "201": {
@@ -185,6 +245,37 @@
                 ],
                 "tags": [
                     "Institutos"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/carreras/create": {
+            "post": {
+                "summary": "Creando una carrera",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "carrera",
+                        "in": "body",
+                        "description": "carrera agregada",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NuevaCarrera"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Carreras"
                 ],
                 "responses": {
                     "201": {
@@ -236,6 +327,47 @@
                     }
                 }
             }
+        },
+        "/api/carreras/actualizar/{idCarrera}": {
+            "put": {
+                "summary": "Modificando una carrera",
+                "operationId": "actualizar",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idCarrera",
+                        "in": "path",
+                        "description": "id de la carrera a eliminar",
+                        "required": true,
+                        "default": 18
+                    },
+                    {
+                        "name":  "carrera",
+                        "in": "body",
+                        "description":  "carrera a modificar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ViejaCarrera"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Carreras"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -256,6 +388,27 @@
                 }
             }
         },
+        "Carrera": {
+            "type": "object",
+            "properties": {
+                "idCarrera": {
+                    "type": "number",
+                    "description": "Identificador de la carrera"
+                },
+                "codigoCarrera": {
+                    "type": "string",
+                    "description": "Código de la carrera"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre de la carrera"
+                },
+                "idInstituto": {
+                    "type": "number",
+                    "description": "Clave foranea del instituto"
+                }
+            }
+        },
         "ViejoInstituto": {
             "type": "object",
             "required": [
@@ -273,10 +426,38 @@
                 }
             }
         },
+        "ViejaCarrera": {
+            "type": "object",
+            "required": [
+                "codigoCarrera",
+                "nombre",
+                "idInstituto"
+            ],
+            "properties": {
+                "codigoCarrera": {
+                    "type": "string",
+                    "default": "111"
+                },
+                "nombre": {
+                    "type": "string",
+                    "default": "Carrera patito"
+                },
+                "idInstituto": {
+                    "type": "string",
+                    "default": "002"
+                }
+            }
+        },
         "Institutos": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/Instituto"
+            }
+        },
+        "Carreras": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Carreras"
             }
         },
         "NuevoInstituto": {
