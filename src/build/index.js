@@ -10,6 +10,7 @@ const morgan_1 = __importDefault(require("morgan"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_json_1 = __importDefault(require("./swagger.json"));
 const cors_1 = __importDefault(require("cors"));
+const carrerasRoutes_1 = __importDefault(require("./routes/carrerasRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -27,7 +28,7 @@ class Server {
     routes() {
         this.app.use(indexRoutes_1.default);
         this.app.use('/api/institutos', institutosRoutes_1.default);
-        //this.app.use('/api/carreras',carrerasRoutes);
+        this.app.use('/api/carreras', carrerasRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

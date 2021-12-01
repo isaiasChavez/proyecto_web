@@ -35,5 +35,26 @@ class CarrerasController {
             res.status(404).json({ 'mensaje': 'Carrera no encontrado' });
         });
     }
+    create(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resp = yield database_1.default.query("INSERT INTO carreras set ?", [req.body]);
+            res.json(resp);
+        });
+    }
+    actualizar(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idCarrera } = req.params;
+            console.log(idCarrera);
+            const resp = yield database_1.default.query("UPDATE carreras set ? WHERE idCarrera = ?", [req.body, idCarrera]);
+            res.json(resp);
+        });
+    }
+    eliminar(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idCarrera } = req.params;
+            const resp = yield database_1.default.query(`DELETE FROM carreras WHERE idCarrera= ${idCarrera}`);
+            res.json(resp);
+        });
+    }
 }
 exports.carrerasController = new CarrerasController();

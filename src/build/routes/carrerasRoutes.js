@@ -10,6 +10,9 @@ class CarrerasRoutes {
     config() {
         this.router.get('/', carrerasController_1.carrerasController.list);
         this.router.get('/:id', carrerasController_1.carrerasController.listOne);
+        this.router.post('/create', carrerasController_1.carrerasController.create);
+        this.router.put('/actualizar/:idCarrera', carrerasController_1.carrerasController.actualizar);
+        this.router.delete('/eliminar/:idCarrera', carrerasController_1.carrerasController.eliminar);
     }
 }
 const carrerasRoutes = new CarrerasRoutes();

@@ -343,7 +343,7 @@
                     {
                         "name": "idCarrera",
                         "in": "path",
-                        "description": "id de la carrera a eliminar",
+                        "description": "id de la carrera a actualizar",
                         "required": true,
                         "default": 18
                     },

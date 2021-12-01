@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import swagger_ui_express from 'swagger-ui-express';
 import swaggerDocument from './swagger.json';
 import cors from 'cors';
+import carrerasRoutes from './routes/carrerasRoutes';
 class Server
 {
 public app: Application;
@@ -27,7 +28,7 @@ routes (): void
 {
 	this.app.use(indexRoutes);
 	this.app.use('/api/institutos',institutosRoutes);
-	//this.app.use('/api/carreras',carrerasRoutes);
+	this.app.use('/api/carreras',carrerasRoutes);
 
 }
 start (): void

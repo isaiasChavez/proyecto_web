@@ -11,6 +11,9 @@ config() : void
 {
 this.router.get('/', carrerasController.list );
 this.router.get('/:id', carrerasController.listOne );
+this.router.post('/create', carrerasController.create );
+this.router.put('/actualizar/:idCarrera', carrerasController.actualizar);
+this.router.delete('/eliminar/:idCarrera', carrerasController.eliminar );
 }
 }
 const carrerasRoutes= new CarrerasRoutes();
